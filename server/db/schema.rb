@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_16_203221) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_16_220955) do
   create_table "entry_points", force: :cascade do |t|
     t.integer "row"
     t.integer "col"
@@ -33,7 +33,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_16_203221) do
     t.integer "row"
     t.integer "col"
     t.boolean "is_occupied", default: false
-    t.datetime "occupied_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
