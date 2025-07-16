@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vehicle: one
+  parking_slot: one
+  entry_time: 2025-07-16 06:22:01
+  exit_time: 2025-07-16 06:22:01
+  fee: 1
+  status: 1
+
+two:
+  vehicle: two
+  parking_slot: two
+  entry_time: 2025-07-16 06:22:01
+  exit_time: 2025-07-16 06:22:01
+  fee: 1
+  status: 1

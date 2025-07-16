@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  slot_type: 1
+  row: 1
+  col: 1
+  is_occupied: false
+  occupied_at: 2025-07-16 06:28:21
+
+two:
+  slot_type: 1
+  row: 1
+  col: 1
+  is_occupied: false
+  occupied_at: 2025-07-16 06:28:21
