@@ -3,5 +3,5 @@ class Vehicle < ApplicationRecord
 
   validates :plate_number, presence: true, uniqueness: true
 
-  enum vehicle_type: { small: 0, medium: 1, large: 2 }
+  enum :vehicle_type, { small: 0, medium: 1, large: 2 }
 end

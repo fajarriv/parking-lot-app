@@ -3,7 +3,7 @@ class ParkingSlot < ApplicationRecord
   has_many :entry_points, through: :parking_slot_distances
   has_many :parking_transactions, dependent: :destroy
 
-  enum slot_type: {
+  enum :slot_type, {
     small: 0,
     medium: 1,
     large: 2
