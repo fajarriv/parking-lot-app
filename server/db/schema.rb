@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_16_000041) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_16_203221) do
   create_table "entry_points", force: :cascade do |t|
     t.integer "row"
     t.integer "col"
@@ -24,8 +24,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_16_000041) do
     t.decimal "distance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["entry_point_id"], name: "index_parking_slot_distances_on_entry_point_id"
-    t.index ["parking_slot_id"], name: "index_parking_slot_distances_on_parking_slot_id"
+    t.index [ "entry_point_id" ], name: "index_parking_slot_distances_on_entry_point_id"
+    t.index [ "parking_slot_id" ], name: "index_parking_slot_distances_on_parking_slot_id"
   end
 
   create_table "parking_slots", force: :cascade do |t|
@@ -40,15 +40,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_16_000041) do
 
   create_table "parking_transactions", force: :cascade do |t|
     t.integer "vehicle_id", null: false
-    t.integer "parking_slot_id", null: false
+    t.integer "parking_slot_id"
     t.datetime "entry_time"
     t.datetime "exit_time"
     t.integer "fee"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parking_slot_id"], name: "index_parking_transactions_on_parking_slot_id"
-    t.index ["vehicle_id"], name: "index_parking_transactions_on_vehicle_id"
+    t.index [ "parking_slot_id" ], name: "index_parking_transactions_on_parking_slot_id"
+    t.index [ "vehicle_id" ], name: "index_parking_transactions_on_vehicle_id"
   end
 
   create_table "vehicles", force: :cascade do |t|
@@ -56,7 +56,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_16_000041) do
     t.integer "vehicle_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["plate_number"], name: "index_vehicles_on_plate_number", unique: true
+    t.index [ "plate_number" ], name: "index_vehicles_on_plate_number", unique: true
   end
 
   add_foreign_key "parking_slot_distances", "entry_points"
