@@ -25,4 +25,23 @@ class Api::V1::ParkingMapController < ApplicationController
   rescue => e
     render json: { error: e.message }, status: :bad_request
   end
+
+  def entry_points
+    entry_points = EntryPoint.all.map do |ep|
+      {
+        id: ep.id,
+        row: ep.row,
+        col: ep.col,
+        created_at: ep.created_at.iso8601
+      }
+    end
+
+    render json: {
+      success: true,
+      data: {
+        entry_points: entry_points,
+        count: entry_points.length
+      }
+    }, status: :ok
+  end
 end
