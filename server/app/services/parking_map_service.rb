@@ -55,6 +55,12 @@ class ParkingMapService
       raise ArgumentError, "Entry point already exists at row #{row}, col #{col}"
     end
 
+    # Validate that we're not trying to add an entry point where a parking slot exists
+    existing_slot = ParkingSlot.find_by(row: row, col: col)
+    if existing_slot && existing_slot.is_occupied
+      raise ArgumentError, "Cannot add entry point at row #{row}, col #{col} - parking slot is currently occupied"
+    end
+
     entry_point = nil
     ActiveRecord::Base.transaction do
       # Find and destroy any parking slot at the new entry point's location.
