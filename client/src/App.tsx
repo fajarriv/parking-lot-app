@@ -1,9 +1,11 @@
-// import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 function App() {
   return (
     <div className="min-h-screen bg-[#242424]">
-      <div></div>
+      <div>
+        <Button>Hello</Button>
+      </div>
     </div>
   );
 }
