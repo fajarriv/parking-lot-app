@@ -12,6 +12,7 @@ import UnparkButton from "./components/UnparkButton";
 import { UnparkingModal } from "./components/UnparkingModal";
 import { GenerateParkingMapForm } from "./components/GenerateParkingMapForm";
 import { AddEntryPointForm } from "./components/AddEntryPointForm";
+import { ParkingStatistics } from "./components/ParkingStatistics";
 
 function App() {
   const [viewMode, setViewMode] = useState<ViewMode>("map");
@@ -60,14 +61,17 @@ function App() {
                 <h2 className="text-xl font-semibold text-white text-center">
                   Parking Map
                 </h2>
-                <ParkingGrid data={parkingMapData} />
-
-                {/* */}
-                <div className="flex flex-col space-y-2">
-                  <ParkButton setIsParkingModalOpen={setIsParkingModalOpen} />
-                  <UnparkButton
-                    setIsUnparkingModalOpen={setIsUnparkingModalOpen}
-                  />
+                <div className="flex flex-wrap gap-8">
+                  <div className="flex flex-col space-y-2 items-center">
+                    <ParkingGrid data={parkingMapData} />
+                    <ParkButton setIsParkingModalOpen={setIsParkingModalOpen} />
+                    <UnparkButton
+                      setIsUnparkingModalOpen={setIsUnparkingModalOpen}
+                    />
+                  </div>
+                  {parkingMapData && (
+                    <ParkingStatistics data={parkingMapData} />
+                  )}
                 </div>
               </div>
             )}
