@@ -12,7 +12,7 @@ export default function ParkButton({
     <Button
       onClick={() => setIsParkingModalOpen(true)}
       variant="default"
-      className="bg-green-600 hover:bg-green-700"
+      className="bg-green-600 hover:bg-green-700 w-1/2"
     >
       <Plus className="w-4 h-4 mr-2" />
       Park Vehicle
