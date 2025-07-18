@@ -1,18 +1,23 @@
 import { useState } from "react";
 import type { ViewMode } from "./types";
 import { NavBar } from "./components/NavBar";
-import { useParkingMap } from "./hooks/useParkingMap";
 import { Button } from "./components/ui/button";
 import { ParkingGrid } from "./components/ParkingMap";
 import { Car } from "lucide-react";
+import { useParkingMap } from "./hooks";
+import ParkingButton from "./components/ParkingButton";
+import { ParkingModal } from "./components/ParkingModal";
+import { Toaster } from "./components/ui/sonner";
 
 function App() {
   const [viewMode, setViewMode] = useState<ViewMode>("map");
+  const [isParkingModalOpen, setIsParkingModalOpen] = useState(false);
+
   const {
     data: parkingMapData,
     isLoading: mapLoading,
     error: mapError,
-    // mutate: refreshMap,
+    mutate: refreshMap,
   } = useParkingMap();
 
   if (mapError) {
@@ -47,11 +52,21 @@ function App() {
         ) : (
           <div className="w-full">
             {viewMode === "map" && parkingMapData && (
-              <div className="flex flex-col items-center text-center">
-                <h2 className="text-xl font-semibold mb-4 text-white text-center">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <h2 className="text-xl font-semibold text-white text-center">
                   Parking Map
                 </h2>
                 <ParkingGrid data={parkingMapData} />
+
+                {/* */}
+                <div className="flex flex-col space-y-2">
+                  <ParkingButton
+                    setIsParkingModalOpen={setIsParkingModalOpen}
+                  />
+                  <ParkingButton
+                    setIsParkingModalOpen={setIsParkingModalOpen}
+                  />
+                </div>
               </div>
             )}
 
@@ -59,6 +74,16 @@ function App() {
           </div>
         )}
       </main>
+      {parkingMapData && (
+        <ParkingModal
+          isOpen={isParkingModalOpen}
+          onClose={() => setIsParkingModalOpen(false)}
+          entryPoints={parkingMapData.entry_points}
+          refreshMap={refreshMap}
+        />
+      )}
+
+      <Toaster />
     </div>
   );
 }

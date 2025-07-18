@@ -8,7 +8,7 @@ export interface IApiError {
   error: string;
 }
 
-export type ViewMode = 'map' | 'manage';
+export type ViewMode = "map" | "manage";
 export type VehicleType = "small" | "medium" | "large";
 export type SlotType = "small" | "medium" | "large";
 
@@ -41,4 +41,29 @@ export interface EntryPoint {
   row: number;
   col: number;
   // created_at?: string;
+}
+export interface EntryPointsResponse {
+  entry_points: EntryPoint[];
+  count: number;
+}
+
+export interface Vehicle {
+  plate_number: string;
+  vehicle_type: VehicleType;
+}
+
+export interface ParkVehicleForm {
+  vehicle_type: VehicleType;
+  plate_number: string;
+  entry_point_id: number;
+}
+
+export interface ParkVehicleData {
+  parking_transaction_id: number;
+  slot_id: number;
+  slot_type: SlotType;
+  slot_position: SlotPosition;
+  vehicle: Vehicle;
+  entry_time: string;
+  entry_point_id: number;
 }
