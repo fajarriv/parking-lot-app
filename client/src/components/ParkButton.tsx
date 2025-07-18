@@ -5,7 +5,7 @@ interface ParkingButtonProps {
   setIsParkingModalOpen: (isOpen: boolean) => void;
 }
 
-export default function ParkingButton({
+export default function ParkButton({
   setIsParkingModalOpen,
 }: ParkingButtonProps) {
   return (

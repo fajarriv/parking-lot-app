@@ -67,3 +67,45 @@ export interface ParkVehicleData {
   entry_time: string;
   entry_point_id: number;
 }
+export interface UnparkVehicleData {
+  vehicle: Vehicle;
+  parking_details: ParkingDetails;
+  billing: Billing;
+}
+export interface ParkingDetails {
+  slot_id: number;
+  slot_type: SlotType;
+  slot_position: SlotPosition;
+  entry_time: string;
+  exit_time?: string;
+  total_hours?: number;
+}
+export interface Billing {
+  fee_charged_pesos: number;
+  fee_charged_cents: number;
+  breakdown: FeeBreakdown;
+}
+export interface FeeBreakdown {
+  total_hours: number;
+  full_days?: number;
+  remainder_hours?: number;
+  daily_charges?: {
+    days: number;
+    rate_per_day_pesos: number;
+    total_pesos: number;
+  };
+  remainder_hours_charges?: {
+    hours: number;
+    hourly_rate_pesos: number;
+    total_pesos: number;
+  };
+  hourly_charges?: {
+    hours?: number;
+    flat_rate_hours?: number;
+    flat_rate_pesos: number;
+    exceeding_hours?: number;
+    hourly_rate_pesos?: number;
+    exceeding_total_pesos?: number;
+    total_pesos: number;
+  };
+}

@@ -5,14 +5,16 @@ import { Button } from "./components/ui/button";
 import { ParkingGrid } from "./components/ParkingMap";
 import { Car } from "lucide-react";
 import { useParkingMap } from "./hooks";
-import ParkingButton from "./components/ParkingButton";
+import ParkButton from "./components/ParkButton";
 import { ParkingModal } from "./components/ParkingModal";
 import { Toaster } from "./components/ui/sonner";
+import UnparkButton from "./components/UnparkButton";
+import { UnparkingModal } from "./components/UnparkingModal";
 
 function App() {
   const [viewMode, setViewMode] = useState<ViewMode>("map");
   const [isParkingModalOpen, setIsParkingModalOpen] = useState(false);
-
+  const [isUnparkingModalOpen, setIsUnparkingModalOpen] = useState(false);
   const {
     data: parkingMapData,
     isLoading: mapLoading,
@@ -60,11 +62,9 @@ function App() {
 
                 {/* */}
                 <div className="flex flex-col space-y-2">
-                  <ParkingButton
-                    setIsParkingModalOpen={setIsParkingModalOpen}
-                  />
-                  <ParkingButton
-                    setIsParkingModalOpen={setIsParkingModalOpen}
+                  <ParkButton setIsParkingModalOpen={setIsParkingModalOpen} />
+                  <UnparkButton
+                    setIsUnparkingModalOpen={setIsUnparkingModalOpen}
                   />
                 </div>
               </div>
@@ -75,12 +75,19 @@ function App() {
         )}
       </main>
       {parkingMapData && (
-        <ParkingModal
-          isOpen={isParkingModalOpen}
-          onClose={() => setIsParkingModalOpen(false)}
-          entryPoints={parkingMapData.entry_points}
-          refreshMap={refreshMap}
-        />
+        <>
+          <ParkingModal
+            isOpen={isParkingModalOpen}
+            onClose={() => setIsParkingModalOpen(false)}
+            entryPoints={parkingMapData.entry_points}
+            refreshMap={refreshMap}
+          />
+          <UnparkingModal
+            isOpen={isUnparkingModalOpen}
+            onClose={() => setIsUnparkingModalOpen(false)}
+            refreshMap={refreshMap}
+          />
+        </>
       )}
 
       <Toaster />
