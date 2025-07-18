@@ -109,3 +109,21 @@ export interface FeeBreakdown {
     total_pesos: number;
   };
 }
+
+export interface GenerateParkingMapForm {
+  rows: number;
+  cols: number;
+}
+
+export interface AddEntryPointForm {
+  row: number;
+  col: number;
+}
+export interface AddEntryPointResponse {
+  entry_point: {
+    id: number;
+    row: number;
+    col: number;
+  };
+  updated_map: ParkingMapData;
+}

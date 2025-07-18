@@ -10,6 +10,8 @@ import { ParkingModal } from "./components/ParkingModal";
 import { Toaster } from "./components/ui/sonner";
 import UnparkButton from "./components/UnparkButton";
 import { UnparkingModal } from "./components/UnparkingModal";
+import { GenerateParkingMapForm } from "./components/GenerateParkingMapForm";
+import { AddEntryPointForm } from "./components/AddEntryPointForm";
 
 function App() {
   const [viewMode, setViewMode] = useState<ViewMode>("map");
@@ -70,7 +72,35 @@ function App() {
               </div>
             )}
 
-            {viewMode === "manage" && <div className="">MANAGE VIEW</div>}
+            {viewMode === "manage" && (
+              <div className="flex justify-center">
+                <div className="w-full max-w-md space-y-8">
+                  <div>
+                    <h2 className="text-xl font-semibold mb-6 text-center text-white">
+                      Create New Map
+                    </h2>
+                    <GenerateParkingMapForm
+                      refreshMap={refreshMap}
+                      setViewMode={setViewMode}
+                    />
+                  </div>
+
+                  {parkingMapData && (
+                    <div>
+                      <h2 className="text-xl font-semibold mb-6 text-center text-white">
+                        Add Entry Point
+                      </h2>
+                      <AddEntryPointForm
+                        maxRows={parkingMapData.rows}
+                        maxCols={parkingMapData.cols}
+                        refreshMap={refreshMap}
+                        setViewMode={setViewMode}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </main>
